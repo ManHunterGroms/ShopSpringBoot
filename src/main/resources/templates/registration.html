@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <div>
+            <label th:text="#{label.email}">Login</label>
+            <input class="form-control" th:field="*{email}"/>
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="text-danger">Error</p>
+        </div>
+        <div>
+            <label th:text="#{label.password}">password</label>
+            <input class="form-control" type="password" th:field="*{password}"/>
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:class="text-danger">Error</p>
+        </div>
+        <div>
+            <label th:text="#{label.confirmPassword}">confirm</label>
+            <input class="form-control" type="password" th:field="*{confirmPassword}"/>
+            <p th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" th:class="text-danger">Error</p>
+        </div>
+
+        <div>
+            <label th:text="#{label.firstname}">firstname</label>
+            <input class="form-control" th:field="*{firstname}"/>
+            <p th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" th:class="text-danger">Error</p>
+        </div>
+
+        <div>
+            <label th:text="#{label.lastname}">lastname</label>
+            <input class="form-control" th:field="*{lastname}"/>
+            <p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" th:class="text-danger">Error</p>
+        </div>
+
+        <div>
+            <label th:text="#{label.middlename}">middlename</label>
+            <input class="form-control" th:field="*{middlename}"/>
+            <p th:if="${#fields.hasErrors('middlename')}" th:errors="*{middlename}" th:class="text-danger">Error</p>
+        </div>
+
+        <div>
+            <label th:text="#{label.address}">address</label>
+            <input class="form-control" th:field="*{address}"/>
+            <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" th:class="text-danger">Error</p>
+        </div>
+
+        <button  class="btn btn-default" type="submit" th:text="#{label.submit}">submit</button>
+    </form>
+</div>
+</body>
+</html>

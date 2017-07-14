@@ -1,7 +1,11 @@
 package com.kolosov.model;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -12,9 +16,33 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "username", unique = true, nullable = false, length = 30)
-    private String username;
+    @NotNull
+    @Size(min = 2, max = 15)
+    @Column(name = "firstname", nullable = false)
+    private String firstname;
 
+    @NotNull
+    @Size(min = 2, max = 20)
+    @Column(name = "lastname", nullable = false)
+    private String lastname;
+
+    @NotNull
+    @Size(min = 2, max = 20)
+    @Column(name = "middlename", nullable = false)
+    private String middlename;
+
+    @Size(max = 200)
+    @Column(name = "address")
+    private String address;
+
+    @NotNull
+    @NotEmpty
+    @Email
+    @Column(name = "email", unique = true, nullable = false)
+    private String email;
+
+    @NotNull
+    @Size(min = 3)
     @Column(name = "password", nullable = false)
     private String password;
 
@@ -30,7 +58,7 @@ public class User {
     }
 
     public User(String username, String password) {
-        this.username = username;
+        this.email = username;
         this.password = password;
     }
 
@@ -42,12 +70,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String username) {
+        this.email = username;
     }
 
     public String getPassword() {
@@ -64,6 +92,38 @@ public class User {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getMiddlename() {
+        return middlename;
+    }
+
+    public void setMiddlename(String middlename) {
+        this.middlename = middlename;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Set<Role> getRoles() {
